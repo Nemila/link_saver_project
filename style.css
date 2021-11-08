@@ -1,0 +1,31 @@
+.nav-link {
+  color: white;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: url(img/home_bg.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+.text-wrapper {
+  width: 50%;
+  min-width: 200px;
+  max-width: 700px;
+
+  text-align: center;
+
+  color: white;
+}
+
+.title {
+  font-size: 2em;
+  font-weight: bold;
+}
