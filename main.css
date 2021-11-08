@@ -89,9 +89,7 @@ textarea {
   resize: none;
 }
 .btn {
-  padding: 16px 32px;
-
-  background-color: dodgerblue;
+  padding: 8px 16px;
 
   border: none;
   border-radius: 5px;
@@ -108,5 +106,12 @@ textarea {
 
 .btn:hover {
   box-shadow: 0 0 5px dodgerblue;
+}
+
+.danger {
+  background: tomato;
+}
+.primary {
+  background: dodgerblue;
 }
 /* -- -- form end -- -- */

@@ -1,6 +1,9 @@
 .nav-link {
   color: white;
 }
+.navbar {
+  position: inherit;
+}
 .container {
   display: grid;
   place-items: center;
@@ -19,7 +22,6 @@
 .profile-card {
   background: linear-gradient(120deg, #2193b0, #6dd5ed);
   padding: 16px;
-  border-radius: 10px;
   text-align: center;
   min-width: 300px;
   max-width: 400px;
@@ -32,8 +34,32 @@
   width: 80%;
 }
 
-.profile-footer {
-}
 .profile-link {
   color: black;
+}
+.link-container {
+  display: grid;
+  padding: 16px;
+  grid-gap: 16px;
+  background: #303030;
+  grid-template-columns: repeat(2, 1fr);
+}
+.link {
+  background: white;
+
+  padding: 16px;
+
+  border-radius: 5px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 16px;
+}
+
+@media (max-width: 800px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
 }

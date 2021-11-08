@@ -37,10 +37,10 @@
 </head>
 <body>
     <?php $rep = get_others_data($db, $username); ?>
+    <section class="container">
     <!-- navbar -->
     <?php include "navbar.php"; ?>
     <!-- section -->
-    <section class="container">
         <section class="profile-card">
             <header class="profile-header">
                 <img src="<?php echo $rep['pdp']; ?>" alt="pdp" class="user-pdp" width="86px">
@@ -48,6 +48,29 @@
             </header>
             <div class="profile-body"><?php echo $rep['bio']; ?></div>
             <footer class="profile-footer"><a href="#" class="profile-link"><i class="fas fa-link"></i> <?php echo $rep['links']; ?></a></footer>
+        </section>
+        <section class="link-container">
+            <div class="link">
+                <div class="link-title">Youtube Link | Maths</div>
+                <div class="button-div">
+                    <button class="btn primary">Go</button>
+                    <button class="btn danger">Del</button>
+                </div>
+            </div>
+            <div class="link">
+                <div class="link-title">Youtube Link | Maths</div>
+                <div class="button-div">
+                    <button class="btn primary">Go</button>
+                    <button class="btn danger">Del</button>
+                </div>
+            </div>
+            <div class="link">
+                <div class="link-title">Youtube Link | Maths</div>
+                <div class="button-div">
+                    <button class="btn primary">Go</button>
+                    <button class="btn danger">Del</button>
+                </div>
+            </div>
         </section>
     </section>
     <script src="app.js"></script>
