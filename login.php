@@ -8,7 +8,7 @@
     //Login 
     if (isset($_POST['login'])) {
         if (!empty($_POST['username']) AND !empty($_POST['password'])) {
-            $username = $_POST['username'];
+            $username = strtolower($_POST['username']);
             $password = $_POST['password'];
 
             $req = $db->prepare('SELECT * FROM users WHERE username=:username');
@@ -16,7 +16,7 @@
                 ':username' => $username
             ]);
             if (($rep = $req->fetch()) > 0) {
-                if ($rep['user_password'] == $password) {
+                if (password_verify($password, $rep['user_password'])) {
                     $_SESSION['user'] = $username;
                     header('location:index.php');
                 } else {
