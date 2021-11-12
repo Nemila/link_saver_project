@@ -38,22 +38,19 @@
     <!-- navbar -->
     <?php include "navbar.php"; ?>
     <!-- section -->
-    <section class="container">
-        <section class="login-form">
-            <h2 class="title">Connect to your account</h2>
+    <section class="main container-fluid d-flex justify-content-center align-items-center">
+        <section class="login-form col-md-4">
+            <h2 class="title">Log-in</h2>
             <form action="" method="POST">
-                <!-- Username - Password - Pdp -->
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" id="username" class="input" placeholder='Enter your username'>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp">
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" class="input" placeholder='Enter your password'>
+                <div class="mb-3">
+                    <label for="pass" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="pass" name="password">
                 </div>
-                <div class="form-group">
-                    <input type="submit" name="login" class="btn" value="Validate">
-                </div>
+                <button type="submit" class="btn btn-dark" name="login">Submit</button>
             </form>
         </section>
     </section>

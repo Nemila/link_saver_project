@@ -1,0 +1,15 @@
+.main {
+  margin-top: 32px;
+}
+.link-bloc {
+  padding: 16px;
+  border-radius: 10px;
+}
+.link-cont {
+  margin: 32px 0;
+}
+.title {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid lightgrey;
+}

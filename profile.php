@@ -1,33 +1,19 @@
-<?php 
+<?php
+    // Dtabase and general functions
     include "db.php";
-    if (isset($_GET['user'])) {
-        $username = $_GET['user'];
-        if (get_others_data($db, $username) <= 0) {
-            header('location:index.php');
-        }
-    } else {
-        header('location:index.php');
-    }
-    if (isset($_POST['modify'])) {
-        $img_link = $_POST['pdp_link'];
-        $bio = $_POST['bio'];
 
-        if (!empty($img_link)) {
-            $req = $db->prepare("UPDATE users SET bio=:bio, pdp=:pdp WHERE username=:username");
-            $req->execute([
-                ':bio' => $bio, 
-                ':pdp' => $img_link, 
-                ':username' => $_SESSION['user']
-            ]);
-        } else {
-            $req = $db->prepare("UPDATE users SET bio=:bio WHERE username=:username");
-            $req->execute([
-                ':bio' => $bio, 
-                ':username' => $_SESSION['user']
-            ]);
-        }
+    // Edit profile bio
+    if (isset($_POST['edit'])) {
+        $bio = $_POST['bio'];
+        $req = $db->prepare("UPDATE users SET bio=:bio WHERE username=:username");
+        $req->execute([
+            ':bio' => $bio, 
+            ':username' => $_SESSION['user']
+        ]);
         header('location:load.php');
     }
+
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,43 +22,46 @@
     <link rel="stylesheet" href="profile.css">
 </head>
 <body>
-    <?php $rep = get_others_data($db, $username); ?>
-    <section class="container">
     <!-- navbar -->
     <?php include "navbar.php"; ?>
-    <!-- section -->
-        <section class="profile-card">
-            <header class="profile-header">
-                <img src="<?php echo $rep['pdp']; ?>" alt="pdp" class="user-pdp" width="86px">
-                <h3 class="user-name"><?php echo $rep['username']; ?></h3>
-            </header>
-            <div class="profile-body"><?php echo $rep['bio']; ?></div>
-            <footer class="profile-footer"><a href="#" class="profile-link"><i class="fas fa-link"></i> <?php echo $rep['links']; ?></a></footer>
+
+    <?php if (isset($_GET['user']) AND (get_others_data($db, $_GET['user']) > 0)){ ?>
+        <?php 
+            $username = $_GET['user']; 
+            $rep = get_others_data($db, $username);
+        ?>
+        <section class="main container-fluid d-flex justify-content-center align-items-center">
+            <section class="profile-card">
+                <div class="profile-ban-color"></div>
+                <div class="profile-body">
+                    <img src="<?php echo $rep['pdp']; ?>" alt="pdp" class="user-pdp" width="100px">
+                    <div class="profil-content">
+                        <h3 class="user-name"><?php echo $rep['username']; ?></h3>
+                        <p class="bio"><?php echo $rep['bio']; ?></p>
+                        <div class="profile-footer"><a href="links.php?linksof=<?php echo $rep['username']; ?>" class="profile-link"><i class="fas fa-link"></i> <?php echo $rep['links']; ?></a></div>
+                    </div>
+                </div>
+                <?php if (isset($_SESSION['user']) AND $_SESSION['user'] == $username):?>
+                    <button class="profile_edit_btn"><i class="fas fa-cog"></i></button>
+                <?php endif; ?>
+            </section>
         </section>
-        <section class="link-container">
-            <div class="link">
-                <div class="link-title">Youtube Link | Maths</div>
-                <div class="button-div">
-                    <button class="btn primary">Go</button>
-                    <button class="btn danger">Del</button>
-                </div>
+        <?php if ($_SESSION['user'] == $username):?>
+            <div class="container edit_profile_form is_hide">
+                <div class="row col-md-12">
+                    <form action="" method="POST" class="bg-light p-4 col-md-12">
+                        <div class="mb-3">
+                            <label for="bio" class="form-label">Biography</label>
+                            <textarea class="bio_edit form-control" id="bio" name="bio" cols="5" rows="5"><?php echo $rep['bio']; ?></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-dark" name="edit">Submit</button>
+                    </form>
+                </div>  
             </div>
-            <div class="link">
-                <div class="link-title">Youtube Link | Maths</div>
-                <div class="button-div">
-                    <button class="btn primary">Go</button>
-                    <button class="btn danger">Del</button>
-                </div>
-            </div>
-            <div class="link">
-                <div class="link-title">Youtube Link | Maths</div>
-                <div class="button-div">
-                    <button class="btn primary">Go</button>
-                    <button class="btn danger">Del</button>
-                </div>
-            </div>
-        </section>
-    </section>
+        <?php endif; ?>
+    <?php } else { ?>
+        <div class="container text-danger text-center error-msg"><h2><i class="fas fa-exclamation-triangle"></i> Aucun utilisateur specifie ou cet utilisateur n'existe pas <i class="fas fa-exclamation-triangle"></i></h2></div>
+    <?php } ?>
     <script src="app.js"></script>
 </body>
 </html>

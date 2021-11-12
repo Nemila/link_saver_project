@@ -22,4 +22,16 @@
         ]);
         return $req->fetch();
     }
+    function change_link_number($db, $user) {
+        $req=$db->prepare("SELECT * FROM links WHERE link_user=:username");
+        $req->execute([
+            ":username" => $user
+        ]);
+        $link_number = $req->rowCount();
+        $req=$db->prepare("UPDATE users SET links=:link_number WHERE username=:username");
+        $req->execute([
+            ":link_number" => $link_number,
+            ":username" => $user
+        ]);
+    }
 ?>

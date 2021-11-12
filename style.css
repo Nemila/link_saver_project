@@ -1,31 +1,31 @@
-.nav-link {
-  color: white;
-}
-
-.container {
-  width: 100%;
+header {
   min-height: 100vh;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: url(img/home_bg.jpg);
+  background: url("img/home_bg.jpg");
   background-position: center;
   background-size: cover;
-}
-
-.text-wrapper {
-  width: 50%;
-  min-width: 200px;
-  max-width: 700px;
-
-  text-align: center;
-
-  color: white;
+  background-attachment: fixed;
 }
 
 .title {
   font-size: 2em;
   font-weight: bold;
+}
+
+.hero {
+  min-height: 100vh;
+  padding-top: 32px;
+}
+
+.member-block {
+  text-align: center;
+  margin: 16px 0;
+}
+.member-block-pdp {
+  border-radius: 50%;
+}
+.hero-title {
+  margin-bottom: 32px;
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 16px;
 }
